@@ -1,0 +1,28 @@
+{
+  "body": [
+      [-160, -100, -288, -288],
+      "g_body1","g_body2","g_body3","g_body4","g_body5","r_body1","r_body2"],
+  "legs": [
+      [-160, -100, -288, -288],
+      "legs1","legs2","legs3", "legs4", "legs5"],
+  "weapons": [
+      [-160, -100, -288, -288],
+      "sword","bow1","bow2","axe"],
+  "arrows": [
+      [-50, -50 ,-183, -183],
+      "ice_arrow", "arrow"],
+  "other": [
+      [],
+      ["ice_block", -100, -100, -128, -128, [200,170]]],
+  "background": [
+      [],
+      "background", "wood.jpg", "bild1", ["gold_arrow", -40, -40, -388, -388]
+  ],
+  "icons": [
+      [-160, -100, -288, -288, 1.8],
+      "shield"
+  ]
+
+
+
+}

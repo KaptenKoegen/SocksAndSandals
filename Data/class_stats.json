@@ -1,0 +1,40 @@
+{
+    "guardian": {
+        "stats": {
+            "hp": 1000,
+            "energy": 100,
+            "atk": 25,
+            "dodge": 10,
+            "range": 150,
+            "mob": 100
+        },
+        "animation": {
+            "atk_frame_len": 5,
+            "dmg_frame": 5,
+            "block_frame_len": 5,
+            "blit_prio": [
+                "weapon",
+                "body",
+                "legs"
+            ]
+        }
+    },
+    "ranger": {
+        "stats": {
+            "hp": 500,
+            "energy": 100,
+            "atk": 30,
+            "dodge": 20,
+            "range": 1000,
+            "mob": 200
+        },
+        "animation": {
+            "atk_frame_len": 14,
+            "blit_prio": [
+                "body",
+                "legs",
+                "weapon"
+            ]
+        }
+    }
+}
