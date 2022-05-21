@@ -109,8 +109,6 @@ class HealthBar:
         self.dmg_text = DamageAnimation(dmg, (x, y), self.DMG_OFFSET)
 
     def draw_bar(self, x, y, screen, scale, stat, max, color):
-        x *= scale
-        y *= scale
         outline = pygame.Rect(0, 0, self.WIDTH * scale + 4, self.HEIGHT * scale + 4)
         gray_bar = pygame.Rect(0, 0, self.WIDTH * scale, self.HEIGHT * scale)
         outline.center = (x, y + self.OFFSET * scale)
@@ -120,7 +118,7 @@ class HealthBar:
 
         # Health Text
         font = pygame.font.SysFont(self.name, round(self.TEXT_SIZE * scale), True)
-        text = font.render(str(stat) + " / " + str(max), True, self.BLACK)
+        text = font.render(str(stat) + "/" + str(max), True, self.BLACK)
         text_rect = text.get_rect()
         text_rect.center = gray_bar.center
 
@@ -134,10 +132,8 @@ class HealthBar:
 
     def draw(self, x, y, screen, scale):
         #HealthBar
-        x *= scale
-        y *= scale
         text_rect = self.draw_bar(x, y, screen, scale, self.hp, self.max_hp, self.RED)
-        self.draw_bar(x, y + self.HEIGHT, screen, scale, self.energy, self.max_energy, self.BLUE)
+        self.draw_bar(x, y + self.HEIGHT * scale, screen, scale, self.energy, self.max_energy, self.BLUE)
 
         name_font = pygame.font.SysFont(self.name, round(self.NAME_SIZE * scale), False)
         name_text = name_font.render(self.name, True, self.WHITE)

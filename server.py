@@ -27,6 +27,8 @@ print("Waiting for a connection, Server Started")
 battle = Battle(Guardian(400, "noggret", 0), Ranger(700, "noggi", 0))
 abilities = [255, 255]
 lock = threading.Lock()
+
+
 def threaded_client(player):
     global battle
     global ability

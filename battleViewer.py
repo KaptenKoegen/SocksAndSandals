@@ -16,12 +16,12 @@ from _thread import *
 class BattleViewer():
 
     MAP_SIZE = (2360, 1440)
-    FPS = 200
-    MODE = "ai" # {normal, network, ai}
+    FPS = 60
+    MODE = "normal" # {normal, network, ai}
 
     def __init__(self, battle, screen):
         self.screen = screen
-        self.scale = 1 # determines the scale of the view
+        self.scale = 1 # determines the scale of the view. Completely broken atm
         self.clock = pygame.time.Clock()
         self.background = pygame.Surface(self.MAP_SIZE)
         if self.MODE == "network":
@@ -117,6 +117,7 @@ class PlayerViewer:
 
     def __init__(self, player, dir):
         self.player = player
+        self.size = 1
         self.color = None
         self.images = resources.create_image_map(player.type, player.weapon, dir)
         self.dir = dir
@@ -145,7 +146,7 @@ class PlayerViewer:
 
     def draw(self, screen, scale):
         self.image.blit(screen, self.x, self.y, scale, self.blit_prio)
-        self.hp_bar.draw(self.x, self.y, screen, scale)
+        self.hp_bar.draw(self.x, self.y, screen, scale * self.size)
         if self.status == "frozen": images.ice_block[0].blit(screen, self.x, self.y)
         for animation in self.animation2.copy():
             if not animation.play(screen):
@@ -201,7 +202,8 @@ class PlayerViewer:
         self.status = event.args[0]
 
     def changeImageMap(self, event):
-        self.images = resources.create_image_map(self.player.type, self.player.weapon, self.dir, event.args[0],color=self.color)
+        self.size = event.args[0]
+        self.images = resources.create_image_map(self.player.type, self.player.weapon, self.dir, self.size, color=self.color)
         self.image = self.images["walk"][-1]
 
 
@@ -233,6 +235,7 @@ class RangedViewer(PlayerViewer):
         elif target == Target.FEET: return  self.enemy.y + 100
         elif target == Target.HEAD: return self.enemy.y - 20
         else: return self.enemy.y
+
 
 def get_parabola_function(x1, x2, y1, y2, a_):
     """ Returns the parabola function that intersects (x1, y1) and (x2, y2)
